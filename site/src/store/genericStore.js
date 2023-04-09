@@ -2,7 +2,7 @@ import Cookies from 'js-cookie'
 import api from '@/services/cakeApi';
 
 const state = {
-	api: 'https://mysite',
+	api: 'https://gallery.jessprogramming.com:8080',
 	site: 'http://localhost',
 	months: ['January','February','March','April','May','June','July','August','September','October','November','December'],
 	weekday: ['Sunday', 'Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],
