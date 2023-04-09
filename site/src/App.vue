@@ -1,55 +1,55 @@
 <template>
-  <v-app>
-    <v-app-bar
-      app
-      color="primary"
-      dark
-    >
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
-
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
-      </div>
-
-      <v-spacer></v-spacer>
-
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
-    </v-app-bar>
-
-    <v-main>
-      <router-view/>
-    </v-main>
-  </v-app>
+	<v-app>
+		<v-btn @click="drawerExpanded = !drawerExpanded">expand me uwu</v-btn>
+		<v-row>
+			<v-col>
+				<v-navigation-drawer :value="drawerExpanded" dense ref="drawer">
+					<v-list dense>
+						<v-list-item>
+						</v-list-item>
+						<v-list-item>
+							<v-expansion-panels>
+								<v-expansion-panel>
+									<v-expansion-panel-header>
+										Filters
+									</v-expansion-panel-header>
+									<v-expansion-panel-content>
+										<gallery-filter-card />
+									</v-expansion-panel-content>
+								</v-expansion-panel>
+							</v-expansion-panels>
+						</v-list-item>
+					</v-list>
+				</v-navigation-drawer>
+			</v-col>
+			<v-col cols="1">
+				<v-btn
+					class="mr-auto"
+					@click="drawerExpanded = !drawerExpanded"
+					text
+				><v-icon>mdi-arrow-collapse-left</v-icon></v-btn>
+			</v-col>
+		</v-row>
+		<v-main>
+			<router-view/>
+		</v-main>
+	</v-app>
 </template>
 
 <script>
-
+import GalleryFilterCard from './components/GalleryFilterCard.vue';
 export default {
-  name: 'App',
-
-  data: () => ({
-    //
-  }),
+	name: 'App',
+	components: {
+		GalleryFilterCard
+	},
+	data() {
+		return {
+			drawerExpanded: true,
+		}
+	},
+	mounted() {
+		this.$vuetify.theme.dark = true;
+	}
 };
 </script>
