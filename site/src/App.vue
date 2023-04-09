@@ -1,35 +1,21 @@
 <template>
 	<v-app>
-		<v-btn @click="drawerExpanded = !drawerExpanded">expand me uwu</v-btn>
-		<v-row>
-			<v-col>
-				<v-navigation-drawer :value="drawerExpanded" dense ref="drawer">
-					<v-list dense>
-						<v-list-item>
-						</v-list-item>
-						<v-list-item>
-							<v-expansion-panels>
-								<v-expansion-panel>
-									<v-expansion-panel-header>
-										Filters
-									</v-expansion-panel-header>
-									<v-expansion-panel-content>
-										<gallery-filter-card />
-									</v-expansion-panel-content>
-								</v-expansion-panel>
-							</v-expansion-panels>
-						</v-list-item>
-					</v-list>
-				</v-navigation-drawer>
-			</v-col>
-			<v-col cols="1">
-				<v-btn
-					class="mr-auto"
-					@click="drawerExpanded = !drawerExpanded"
-					text
-				><v-icon>mdi-arrow-collapse-left</v-icon></v-btn>
-			</v-col>
-		</v-row>
+		<navigation-drawer start-open style="height: 100%">
+			<v-list dense>
+				<v-list-item class="px-1">
+					<v-expansion-panels>
+						<v-expansion-panel class="rounded-0">
+							<v-expansion-panel-header>
+								Filters
+							</v-expansion-panel-header>
+							<v-expansion-panel-content>
+								<gallery-filter-card />
+							</v-expansion-panel-content>
+						</v-expansion-panel>
+					</v-expansion-panels>
+				</v-list-item>
+			</v-list>
+		</navigation-drawer>
 		<v-main>
 			<router-view/>
 		</v-main>
@@ -38,10 +24,13 @@
 
 <script>
 import GalleryFilterCard from './components/GalleryFilterCard.vue';
+import NavigationDrawer from './components/Utility/NavigationDrawer.vue';
+
 export default {
 	name: 'App',
 	components: {
-		GalleryFilterCard
+		GalleryFilterCard,
+		NavigationDrawer
 	},
 	data() {
 		return {
