@@ -1,9 +1,9 @@
 <template>
 	<v-app>
-		<navigation-drawer start-open style="height: 100%">
+		<navigation-drawer start-open style="height: 100%" @toggle="n => drawerOpen = n">
 			<v-list dense>
 				<v-list-item class="px-1">
-					<v-expansion-panels>
+					<v-expansion-panels v-if="drawerOpen">
 						<v-expansion-panel class="rounded-0">
 							<v-expansion-panel-header>
 								Filters
@@ -13,6 +13,7 @@
 							</v-expansion-panel-content>
 						</v-expansion-panel>
 					</v-expansion-panels>
+					<v-icon class="mx-auto" v-else disabled>mdi-filter-variant</v-icon>
 				</v-list-item>
 			</v-list>
 		</navigation-drawer>
@@ -34,7 +35,7 @@ export default {
 	},
 	data() {
 		return {
-			drawerExpanded: true,
+			drawerOpen: true
 		}
 	},
 	mounted() {

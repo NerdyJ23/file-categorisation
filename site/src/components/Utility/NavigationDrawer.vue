@@ -7,12 +7,15 @@
 			permanent
 		>
 		<v-row>
-			<v-col class="d-inline-flex flex-row-reverse">
+			<v-col class="d-inline-flex flex-row ml-2 my-1">
+				<span class="text-h6 mx-auto" v-if="open">Gallery Search</span>
 				<v-btn
-					@click="open = !open"
-					class="rounded-0"
-					text
-				><v-icon>mdi-{{open ? 'window-close' : 'arrow-right' }}</v-icon></v-btn>
+					@click="drawerButtonClicked"
+					class="ml-auto mr-2"
+					icon
+				>
+					<v-icon>mdi-{{open ? 'window-close' : 'arrow-right' }}</v-icon>
+				</v-btn>
 			</v-col>
 		</v-row>
 		<v-divider />
@@ -51,8 +54,9 @@ export default {
 		this.open = this.startOpen;
 	},
 	methods: {
-		update(n) {
-			console.log(n);
+		drawerButtonClicked() {
+			this.open = !this.open;
+			this.$emit('toggle', this.open);
 		}
 	}
 }
