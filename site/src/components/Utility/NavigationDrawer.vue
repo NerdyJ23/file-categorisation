@@ -5,6 +5,7 @@
 		ref="drawer"
 		permanent
 		class="d-flex flex-column"
+		style="position: sticky; max-height: 100vh"
 	>
 	<div class="d-flex flex-row ml-2 my-1">
 		<span class="text-h6 flex-grow-1" v-if="open">Gallery Search</span>
