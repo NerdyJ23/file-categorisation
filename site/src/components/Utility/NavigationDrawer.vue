@@ -1,21 +1,21 @@
 <template>
-	<div class="nav-drawer">
+	<div>
 		<v-navigation-drawer
 			:mini-variant="!open"
 			:dense="dense"
 			ref="drawer"
 			permanent
 		>
-		<v-row class="pb-2">
-			<v-col >
+		<v-row>
+			<v-col class="d-inline-flex flex-row-reverse">
 				<v-btn
 					@click="open = !open"
-					class="justify-end"
+					class="rounded-0"
 					text
 				><v-icon>mdi-{{open ? 'window-close' : 'arrow-right' }}</v-icon></v-btn>
-				<v-divider />
 			</v-col>
 		</v-row>
+		<v-divider />
 		<v-row>
 			<v-col>
 				<template v-show="open">
