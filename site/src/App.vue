@@ -18,7 +18,7 @@
 							<v-icon class="mx-auto" v-else disabled>mdi-filter-variant</v-icon>
 						</v-list-item>
 					</v-list>
-					<template #actions>
+					<template #actions v-if="drawerOpen">
 						<v-btn color="success" class="rounded-0" @click="search">
 							<v-icon>mdi-magnify</v-icon>
 							Search
@@ -43,7 +43,7 @@ export default {
 	},
 	data() {
 		return {
-			drawerOpen: true
+			drawerOpen: false
 		}
 	},
 	mounted() {

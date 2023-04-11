@@ -1,9 +1,9 @@
 <template>
-	<div class="d-flex flex-row flex-wrap">
-		<div class="d-flex flex-row mx-auto" v-for="item in 20">
+	<div class="d-flex flex-row flex-wrap mx-auto justify-center">
+		<div class="d-flex flex-row" v-for="item in 20">
 			<gallery-item-card
 				:id="item"
-				class="ma-4 pa-2 justify-space-around"
+				class="ma-4 pa-2"
 			/>
 		</div>
 	</div>
