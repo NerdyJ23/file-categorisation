@@ -1,16 +1,13 @@
 <template>
-	<div>
-		<v-row>
-			<v-col>
+	<div class="d-inline-flex flex-column">
+		<div class="flex-grow-1">
 				<v-text-field
 					append-icon="mdi-magnify"
 					label="Artist"
-					v-model="filter.artist"
+					v-model="artist"
 				/>
-			</v-col>
-		</v-row>
-		<v-row>
-			<v-col>
+		</div>
+		<div class="flex-grow-1">
 				<v-autocomplete
 					label="Character(s)"
 					deletable-chips
@@ -18,13 +15,11 @@
 					small-chips
 					hide-selected
 					hide-no-data
-					:items="filter.characters.list"
-					v-model="filter.characters.selected"
+					:items="characters.list"
+					v-model="characters.selected"
 				></v-autocomplete>
-			</v-col>
-		</v-row>
-		<v-row>
-			<v-col>
+		</div>
+		<div class="flex-grow-1">
 				<v-autocomplete
 					label="Categories"
 					deletable-chips
@@ -32,16 +27,13 @@
 					small-chips
 					hide-selected
 					hide-no-data
-					:items="filter.categories.list"
-					v-bind="filter.categories.selected"
+					:items="categories.list"
+					v-bind="categories.selected"
 				></v-autocomplete>
-			</v-col>
-		</v-row>
-		<v-row>
-			<v-col class="d-inline-flex">
-				<v-btn class="flex-grow-1">Clear</v-btn>
-			</v-col>
-		</v-row>
+		</div>
+		<div class="d-inline-flex">
+			<v-btn class="flex-grow-1" @click="clearFilter">Clear</v-btn>
+		</div>
 	</div>
 </template>
 <script>
@@ -51,17 +43,22 @@ export default {
 	},
 	data() {
 		return {
-			filter: {
-				artist: "test",
-				characters: {
-					list: ["Ahri", "Neeko", "Nidalee"],
-					selected: []
-				},
-				categories: {
-					list: ["Solo", "Yuri"],
-					selected: []
-				}
+			artist: "",
+			characters: {
+				list: ["Ahri", "Neeko", "Nidalee"],
+				selected: []
+			},
+			categories: {
+				list: ["Solo", "Yuri"],
+				selected: []
 			}
+		}
+	},
+	methods: {
+		clearFilter() {
+			this.artist = "";
+			this.characters.selected = [];
+			this.categories.selected = [];
 		}
 	}
 }

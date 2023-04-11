@@ -1,33 +1,34 @@
 <template>
-	<div>
-		<v-navigation-drawer
-			:mini-variant="!open"
-			:dense="dense"
-			ref="drawer"
-			permanent
+	<v-navigation-drawer
+		:mini-variant="!open"
+		:dense="dense"
+		ref="drawer"
+		permanent
+		class="d-flex flex-column"
+	>
+	<div class="d-flex flex-row ml-2 my-1">
+		<span class="text-h6 flex-grow-1" v-if="open">Gallery Search</span>
+		<v-btn
+			@click="drawerButtonClicked"
+			icon
+			class="mr-2"
 		>
-		<v-row>
-			<v-col class="d-inline-flex flex-row ml-2 my-1">
-				<span class="text-h6 mx-auto" v-if="open">Gallery Search</span>
-				<v-btn
-					@click="drawerButtonClicked"
-					class="ml-auto mr-2"
-					icon
-				>
-					<v-icon>mdi-{{open ? 'window-close' : 'arrow-right' }}</v-icon>
-				</v-btn>
-			</v-col>
-		</v-row>
-		<v-divider />
-		<v-row>
-			<v-col>
-				<template v-show="open">
-					<slot></slot>
-				</template>
-			</v-col>
-		</v-row>
-		</v-navigation-drawer>
+			<v-icon>mdi-{{open ? 'window-close' : 'arrow-right' }}</v-icon>
+		</v-btn>
 	</div>
+	<v-divider />
+	<!-- Content -->
+	<div class="d-flex flex-column">
+		<slot></slot>
+	</div>
+
+	<!-- Actions -->
+	<template #append>
+		<div class="d-flex flex-column">
+			<slot name="actions"></slot>
+		</div>
+	</template>
+	</v-navigation-drawer>
 </template>
 <script>
 export default {

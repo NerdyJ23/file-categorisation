@@ -2,8 +2,8 @@
 	<v-app>
 		<navigation-drawer start-open style="height: 100%" @toggle="n => drawerOpen = n">
 			<v-list dense>
-				<v-list-item class="px-1">
-					<v-expansion-panels v-if="drawerOpen">
+				<v-list-item class="px-1 flex-grow-1">
+					<v-expansion-panels :value="0" v-if="drawerOpen">
 						<v-expansion-panel class="rounded-0">
 							<v-expansion-panel-header>
 								Filters
@@ -16,6 +16,12 @@
 					<v-icon class="mx-auto" v-else disabled>mdi-filter-variant</v-icon>
 				</v-list-item>
 			</v-list>
+			<template #actions>
+				<v-btn color="success" class="rounded-0">
+					<v-icon>mdi-magnify</v-icon>
+					Search
+				</v-btn>
+			</template>
 		</navigation-drawer>
 		<v-main>
 			<router-view/>
