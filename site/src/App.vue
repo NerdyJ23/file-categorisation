@@ -56,3 +56,8 @@ export default {
 	}
 };
 </script>
+<style lang="scss">
+html {
+	overflow: hidden !important;
+}
+</style>
