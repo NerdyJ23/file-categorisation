@@ -4,9 +4,8 @@ namespace App\Controller;
 use DateTime;
 use Cake\Controller\Controller;
 use Cake\Http\Cookie\Cookie;
-
-use App\Controller\Security\EncryptionController;
-use App\Controller\Security\AuthenticationController;
+use App\Client\Security\EncryptionClient;
+use App\Client\Security\AuthClient;
 use App\Controller\Component\Enum\StatusCodes;
 use App\Client\Users\UserClient;
 
@@ -22,14 +21,10 @@ class UsersController extends ApiController {
 
 		$pass = $this->request->getData('password');
 		$username = $this->request->getData('username');
-		$first_name = $this->request->getData('firstName');
-		$last_name = $this->request->getData('lastName');
 
 		$user = $this->fetchTable('Users')->newEntity([
-			'first_name' => $first_name,
-			'last_name' => $last_name,
 			'username' => $username,
-			'password' => (new EncryptionController)->hashPassword($pass),
+			'password' => EncryptionClient::hashPassword($pass),
 		]);
 
 		$result = $this->getTableLocator()->get('Users')->save($user);
@@ -72,14 +67,12 @@ class UsersController extends ApiController {
 	public function validToken() {
 		$req = $this->request;
 		$token = $req->getCookie('token');
-		$result = (new AuthenticationController)->validToken($token);
+		$result = AuthClient::validToken($token);
 		$this->set('validToken', $result);
 	}
 	private function toExtendedSchema($user) {
 		return [
-			'username' => $user->Username,
-			'first_name' => $user->First_Name,
-			'last_name' => $user->Last_Name
+			'username' => $user->Username
 		];
 	}
 }

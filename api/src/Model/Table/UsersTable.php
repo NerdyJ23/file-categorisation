@@ -10,8 +10,7 @@ use App\Model\Behavior\DeadlineTimestampBehavior;
 class UsersTable extends Table {
 	public function initialize(array $config): void {
 
-		$this->setTable('Users');
-		$this->setDisplayField('first_name');
+		$this->setTable('users');
 		$this->setPrimaryKey('id');
 
 		$this->addBehavior('Timestamp', [
