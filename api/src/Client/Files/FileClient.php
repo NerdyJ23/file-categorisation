@@ -4,6 +4,7 @@ namespace App\Client\Files;
 
 use App\Client\AbstractClient;
 use App\Client\Security\AuthClient;
+use App\Controller\Component\Pagination;
 
 class FileClient extends AbstractClient {
 	const TABLE = "Files";

@@ -7,12 +7,10 @@ use Cake\Http\Response;
 
 use App\Controller\Security\EncryptionController;
 use App\Controller\Component\Enum\StatusCodes;
+use App\Schema\AbstractSchema;
 
 use Cake\Event\EventInterface;
-
-use Cake\Utility\Security;
 use Cake\View\JsonView;
-use Cake\Auth\WeakPasswordHasher;
 
 class ApiController extends Controller {
 	public function initialize(): void {
@@ -38,8 +36,8 @@ class ApiController extends Controller {
 
 	}
 
-	protected function decrypt($id) {
-		return (new EncryptionController)->decrypt($id);
+	protected function schema(mixed $item, string $schema): mixed {
+		return AbstractSchema::schema(item: $item, schema: $schema);
 	}
 
     protected function response($enum) {

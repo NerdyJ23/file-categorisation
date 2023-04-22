@@ -8,7 +8,6 @@ use App\Controller\Component\Pagination;
 use App\Client\Security\AuthClient;
 use App\Client\Files\FileClient;
 
-
 class FilesController extends ApiController {
 	public function initialize(): void {
 		parent::initialize();
@@ -24,7 +23,7 @@ class FilesController extends ApiController {
 		}
 
 		$result = FileClient::list(token: $token, pagination: $pagination);
-		$schema = AbstractSchema::schema($result->list, "Files");
+		$schema = parent::schema($result->list, "Files");
 		$this->set("result", $schema);
 		$this->set("page", $pagination->getPage());
 		$this->set("limit", $pagination->getLimit());
