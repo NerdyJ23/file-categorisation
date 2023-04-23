@@ -16,8 +16,14 @@ class FileClient extends AbstractClient {
 
 	}
 
-	static function list(string $token, Pagination $pagination): object {
+	static function list(string $token, Pagination $pagination, mixed $tags): object {
 		$query = parent::fetchTable(FileClient::TABLE)->find("all");
+		$query = $query->contain(['Tags']);
+		if ($tags != null) {
+			$query = $query->matching('Tags', function($q) use ($tags) {
+				return $q->where(['Tags.name IN' => $tags]);
+			});
+		}
 		return parent::toList($query, $pagination);
 	}
 }

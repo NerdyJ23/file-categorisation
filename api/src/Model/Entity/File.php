@@ -3,7 +3,7 @@
 namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
-use App\Controller\Security\EncryptionController;
+use App\Client\Security\EncryptionClient;
 
 class File extends Entity {
 	protected $_hidden = ['id'];
@@ -12,8 +12,8 @@ class File extends Entity {
 		'filename' => true 
 	];
 
-	protected function _getEncryptedId() {
-		return ((new EncryptionController)->encrypt($this->_fields['id']));
+	protected function _getId() {
+		return EncryptionClient::encrypt($this->_fields['id']);
 	}
 }
 ?>

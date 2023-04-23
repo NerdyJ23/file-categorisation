@@ -3,7 +3,8 @@ namespace App\Schema;
 
 class AbstractSchema {
 	static $schemas = [
-		'File' => 'App\Schema\Files\FileSchema'
+		'File' => 'App\Schema\Files\FileSchema',
+		'Tag' => 'App\Schema\TagSchema'
 	];
 
 	static function schema(mixed $item, string $schema): mixed {

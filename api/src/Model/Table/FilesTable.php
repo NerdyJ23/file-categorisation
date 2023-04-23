@@ -7,6 +7,11 @@ class FilesTable extends Table {
 
 		$this->setTable('ref_files');
 		$this->setPrimaryKey('id');
+		$this->belongsToMany('Tags', [
+			'joinTable' => 'link_tags',
+			'bindingKey' => 'id',
+			'foreignKey' => 'file_id'
+		]);
 	}
 }
 

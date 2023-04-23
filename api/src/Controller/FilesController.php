@@ -17,13 +17,13 @@ class FilesController extends ApiController {
 		$req = $this->request;
 		$token = $req->getCookie("token");
 		$pagination = new Pagination($req);
-
+		$tags = $req->getQuery('tags') == null ? null : explode(',', $req->getQuery('tags'));
 		if ($token == null || !AuthClient::validToken($token)) {
 			return $this->response(StatusCodes::ACCESS_DENIED);
 		}
 
-		$result = FileClient::list(token: $token, pagination: $pagination);
-		$schema = parent::schema($result->list, "Files");
+		$result = FileClient::list(token: $token, pagination: $pagination, tags: $tags);
+		$schema = parent::schema($result->list, "File");
 		$this->set("result", $schema);
 		$this->set("page", $pagination->getPage());
 		$this->set("limit", $pagination->getLimit());
